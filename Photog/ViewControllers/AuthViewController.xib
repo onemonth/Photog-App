@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Photog" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="M07-TZ-cGX" id="LOj-Yd-jYl"/>
+                <outlet property="passwordTextField" destination="3bF-E0-OHf" id="WL8-iN-LXY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M07-TZ-cGX">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="qlr-fU-fqP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="v8R-qH-EOo"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3bF-E0-OHf">
+                    <rect key="frame" x="0.0" y="45" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="1g0-1q-2UH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="V4j-NI-5qG"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="M07-TZ-cGX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8RZ-oI-JS3"/>
+                <constraint firstAttribute="trailing" secondItem="M07-TZ-cGX" secondAttribute="trailing" id="HMA-Qq-7yC"/>
+                <constraint firstItem="3bF-E0-OHf" firstAttribute="top" secondItem="M07-TZ-cGX" secondAttribute="bottom" constant="1" id="RF5-WR-MLz"/>
+                <constraint firstAttribute="trailing" secondItem="3bF-E0-OHf" secondAttribute="trailing" id="TiF-98-Zrf"/>
+                <constraint firstItem="3bF-E0-OHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iUE-6J-LGu"/>
+                <constraint firstItem="M07-TZ-cGX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kYy-k3-Guy"/>
+            </constraints>
+            <point key="canvasLocation" x="8" y="133"/>
+        </view>
+    </objects>
+</document>

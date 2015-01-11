@@ -9,16 +9,36 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        self.setupParse()
+        self.setupAppAppearance();
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        var navigationController = UINavigationController()
+        var startViewController = StartViewController(nibName: "StartViewController", bundle: nil)
+        
+        if PFUser.currentUser() == nil
+        {
+            navigationController.viewControllers = [startViewController]
+        }
+        else
+        {
+            var tabBarController = TabBarController()
+            navigationController.viewControllers = [startViewController, tabBarController]
+        }
+        
+        self.window!.rootViewController = navigationController
+        self.window!.makeKeyAndVisible()
+        
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -41,6 +61,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK: Setup
+    
+    func setupParse()
+    {
+        Parse.setApplicationId("YOUR APP ID HERE", clientKey:"YOUR CLIENT KEY HERE")
+        
+//        var testObject = PFObject(className: "TestObject")
+//        testObject["foo"] = "bar"
+//        testObject.saveInBackground()
+    }
+    
+    func setupAppAppearance()
+    {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
+        UITabBar.appearance().barTintColor = UIColor.blackColor()
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().selectionIndicatorImage = UIImage(named: "SelectedTabBackground")
+    }
 
 }
 
