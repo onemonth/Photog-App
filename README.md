@@ -2,7 +2,7 @@
 
 ##Setup
 
-1. Install the latest version of [Xcode](https://developer.apple.com/xcode/downloads/) (Xcode 6.2 at the time of writing this)
+1. Install the latest version of [Xcode](https://developer.apple.com/xcode/downloads/) (Xcode 6.3.2 at the time of writing this)
 
 1. Run `git clone git@github.com:onemonth/Photog-App.git` or download the zip from Github
 
