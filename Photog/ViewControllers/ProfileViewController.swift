@@ -49,8 +49,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostCellIdentifier") as PostCell
-        var item = items[indexPath.row] as PFObject
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCellIdentifier") as! PostCell
+        var item = items[indexPath.row] as! PFObject
         
         cell.post = item
         

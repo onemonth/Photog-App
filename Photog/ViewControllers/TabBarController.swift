@@ -29,7 +29,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, UIImageP
         
         var imageNames = ["FeedIcon", "ProfileIcon", "SearchIcon", "CameraIcon"]
         
-        let tabItems = tabBar.items as [UITabBarItem]
+        let tabItems = tabBar.items as! [UITabBarItem]
         for (index, value) in enumerate(tabItems)
         {
             var imageName = imageNames[index]
@@ -63,7 +63,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, UIImageP
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool
     {
-        var cameraViewController = self.viewControllers![3] as UIViewController
+        var cameraViewController = self.viewControllers![3] as? UIViewController
         if viewController == cameraViewController
         {
             showCamera()
@@ -90,23 +90,29 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, UIImageP
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
-        var image: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
-
-        var targetWidth = UIScreen.mainScreen().scale * UIScreen.mainScreen().bounds.size.width
-        var resizedImage = image.resize(targetWidth)
-        
-        picker.dismissViewControllerAnimated(true, completion: {
-            () -> Void in
-          
-            NetworkManager.sharedInstance.postImage(resizedImage, completionHandler: {
-                (error) -> () in
-                
-                if let constError = error
-                {
-                    self.showAlert(constError.localizedDescription)
-                }
-            })
+        var image: UIImage? = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if let constImage = image
+        {
+            var targetWidth = UIScreen.mainScreen().scale * UIScreen.mainScreen().bounds.size.width
+            var resizedImage = constImage.resize(targetWidth)
             
-        })
+            picker.dismissViewControllerAnimated(true, completion: {
+                () -> Void in
+                
+                NetworkManager.sharedInstance.postImage(resizedImage, completionHandler: {
+                    (error) -> () in
+                    
+                    if let constError = error
+                    {
+                        self.showAlert(constError.localizedDescription)
+                    }
+                })
+                
+            })
+        }
+        else
+        {
+            // Handle error
+        }
     }
 }

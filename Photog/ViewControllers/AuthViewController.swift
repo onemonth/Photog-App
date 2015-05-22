@@ -125,8 +125,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         user.email = email
         user.password = password
         
-        user.signUpInBackgroundWithBlock {
-            (succeeded: Bool!, error: NSError!) -> Void in
+        user.signUpInBackgroundWithBlock { (success, error) -> Void in
             
             if let constError = error
             {

@@ -50,6 +50,8 @@ public class NetworkManager
             }
             else
             {
+                println(objects)
+                
                 var postQuery = PFQuery(className: "Post")
                 postQuery.whereKey("User", containedIn: objects)
                 postQuery.orderByDescending("createdAt")
@@ -64,19 +66,22 @@ public class NetworkManager
 
     func fetchImage(post: PFObject, completionHandler: ImageCompletionHandler)
     {
-        var imageReference = post["Image"] as PFFile
-        imageReference.getDataInBackgroundWithBlock {
-            (data, error) -> Void in
-         
-            if let constError = error
-            {
-                println("Error fetching image \(constError.localizedDescription)")
-                completionHandler(image: nil, error: constError)
-            }
-            else
-            {
-                let image = UIImage(data: data)
-                completionHandler(image:image, error: nil)
+        var imageReference = post["Image"] as? PFFile
+        if let constImageRef = imageReference
+        {
+            constImageRef.getDataInBackgroundWithBlock {
+                (data, error) -> Void in
+                
+                if let constError = error
+                {
+                    println("Error fetching image \(constError.localizedDescription)")
+                    completionHandler(image: nil, error: constError)
+                }
+                else
+                {
+                    let image = UIImage(data: data)
+                    completionHandler(image:image, error: nil)
+                }
             }
         }
     }

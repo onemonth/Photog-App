@@ -50,7 +50,7 @@ class PostCell: UITableViewCell {
         {
             // Set the username label
             
-            var user = constPost["User"] as PFUser
+            var user = constPost["User"] as! PFUser
             user.fetchIfNeededInBackgroundWithBlock({
                 (object, error) -> Void in
                 
